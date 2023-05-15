@@ -1,0 +1,4 @@
+---
+- name: Master playbook
+  become: yes
+  import_playbook: proxmox.yml

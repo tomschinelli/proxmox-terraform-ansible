@@ -1,0 +1,7 @@
+---
+- name: Setup Proxmox Templates
+  hosts: proxmox
+  become: yes
+  roles:
+    - name: pve-template
+      tags: [pve-template]
