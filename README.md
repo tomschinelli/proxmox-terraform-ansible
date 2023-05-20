@@ -28,7 +28,13 @@ EOF
 ```
 
 ## Create VMs
-### :construction_worker: Preparation
+
+You need to run the following steps to create VMs
+
+- Create templates
+- Create clones from templates
+
+### :construction_worker: Prepare templates
 
 You need a configured vm template, that will be cloned with terraform.
 
@@ -41,14 +47,7 @@ cd templates
 ansible-playbook site.yml -i inventory
 ```
 
-### Create remote state
-
-Currently, the state is saved locally, since this is just an example project.
-
-Make sure use safe the terraform state somewhere, your team can access it. E.g. 
-a S3 bucket in AWS.
-
-### :hammer: Create VMs via terraorm
+### :hammer: Create VMs in terraorm
 
 ```shell
 cd vms
