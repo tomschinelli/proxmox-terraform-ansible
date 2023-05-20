@@ -27,7 +27,8 @@ proxmox_api_token_id     = "root@pam!terraform"
 EOF
 ```
 
-## :construction_worker: Preparation
+## Create VMs
+### :construction_worker: Preparation
 
 You need a configured vm template, that will be cloned with terraform.
 
@@ -40,14 +41,14 @@ cd templates
 ansible-playbook site.yml -i inventory
 ```
 
-## :information_source: Create remote state
+### Create remote state
 
 Currently, the state is saved locally, since this is just an example project.
 
 Make sure use safe the terraform state somewhere, your team can access it. E.g. 
 a S3 bucket in AWS.
 
-## :hammer: Create VMs
+### :hammer: Create VMs via terraorm
 
 ```shell
 cd vms
