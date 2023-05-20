@@ -11,7 +11,7 @@ Add token to credentials file and add all required values.
 
 Example:
 ```shell
-cat <<'EOF' >> credentials.auto.tfvars
+cat <<'EOF' >> vms/credentials.auto.tfvars
 proxmox_api_token_secret = "12345678-abcd-4321-fghi-1234567890ab"
 proxmox_api_url          = "https://192.168.1.100:8006/api2/json"
 proxmox_api_token_id     = "root@pam!terraform"

@@ -1,0 +1,6 @@
+templates:
+  - vmid: "9001"
+    key: ubuntu-server
+    template_name: ubuntu-server-2204
+    storage_name: fast1
+    imageUrl: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"

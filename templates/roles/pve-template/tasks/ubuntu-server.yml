@@ -1,0 +1,44 @@
+---
+- name: "({{template_name}}) Check existence"
+  register: reg_exists
+  command: pvesh get /cluster/nextid -vmid {{ vmid }}
+  failed_when: false
+  changed_when: reg_exists.stdout == vmid
+
+- name: "({{template_name}}) Update apt repo and cache"
+  apt: update_cache=yes
+  when: reg_exists.changed
+
+- name: "({{template_name}}) Install requirements"
+  apt:
+    name: libguestfs-tools
+  when: reg_exists.changed
+
+- name: "({{template_name}}) Download ubuntu cloud image"
+  register: reg_download
+  get_url:
+    url: "{{ imageUrl }}"
+    dest: "/var/lib/vz/images/{{ imageUrl | basename }}"
+  when: reg_exists.changed
+
+- name: "({{template_name}}) Create template"
+  vars:
+    file_name: "{{ imageUrl | basename }}"
+  shell:
+    chdir: /var/lib/vz/images
+    cmd: |
+      virt-customize -a {{ file_name }} --install qemu-guest-agent
+      qm create {{ vmid }} --name "{{ template_name }}" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
+      qm importdisk {{ vmid }} {{ file_name }} {{ storage_name }}
+      qm set {{ vmid }} --scsihw virtio-scsi-pci --scsi0 {{ storage_name }}:vm-{{ vmid }}-disk-0
+      qm set {{ vmid }} --boot c --bootdisk scsi0
+      qm set {{ vmid }} --ide2 {{ storage_name }}:cloudinit
+      qm set {{ vmid }} --serial0 socket --vga serial0
+      qm set {{ vmid }} --agent enabled=1
+      qm template {{ vmid }}
+  when: reg_exists.changed
+
+- name: "({{template_name}}) Delete image"
+  file:
+    path: "/var/lib/vz/images/{{ imageUrl | basename }}"
+    state: absent

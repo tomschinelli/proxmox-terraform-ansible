@@ -1,0 +1,11 @@
+---
+- name: Create Ubuntu 22.04 Template
+  include_tasks: "{{ item.key }}.yml"
+  vars:
+    vmid: "{{ item.vmid }}"
+    imageUrl: "{{ item.imageUrl }}"
+    key: "{{ item.key }}"
+    storage_name: "{{ item.storage_name }}"
+    template_name: "{{ item.template_name }}"
+
+  with_items: "{{ templates }}"
