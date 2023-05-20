@@ -1,13 +1,9 @@
-# Proxmox - Ansible/Terraform Example (WIP)
+# Proxmox - Ansible/Terraform Example
 
 This project is an example on how to create and clone a proxmox template.
 
 **Note**: This is not a fully featured project. Use it to copy and paste the code into your project.
 
-## :bug: Known issues/bugs
-
-### Debian 11
-Changing the disk sizes, causes terraform to run indefinitely.
 
 ## :information_source: Requirements
 
@@ -60,3 +56,7 @@ terraform plan
 terraform apply
 ```
 
+## :bug: Known issues/bugs
+
+### Debian 11
+Changing the disk sizes, causes terraform to run indefinitely.
