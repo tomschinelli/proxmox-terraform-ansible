@@ -27,14 +27,14 @@ proxmox_api_token_id     = "root@pam!terraform"
 EOF
 ```
 
-## Create VMs
+## :hammer: Create VMs
 
 You need to run the following steps to create VMs
 
 - Create templates
 - Create clones from templates
 
-### :construction_worker: Prepare templates
+### Prepare templates
 
 You need a configured vm template, that will be cloned with terraform.
 
@@ -47,7 +47,7 @@ cd templates
 ansible-playbook site.yml -i inventory
 ```
 
-### :hammer: Create VMs in terraorm
+### Create VMs in terraorm
 
 ```shell
 cd vms
