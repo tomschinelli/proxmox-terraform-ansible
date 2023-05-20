@@ -1,5 +1,0 @@
-vms/terraform.tfstate
-vms/terraform.tfstate.backup
-.terraform
-.terraform.tfstate.lock.info
-vms/credentials.auto.tfvars
