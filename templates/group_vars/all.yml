@@ -1,11 +1,19 @@
 templates:
+
   - vmid: "9001"
-    key: ubuntu-server
+    key: debian-based
     template_name: ubuntu-server-2204
     storage_name: fast1
     imageUrl: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+
   - vmid: "9002"
-    key: ubuntu-server
+    key: debian-based
     template_name: ubuntu-server-2304
     storage_name: fast1
     imageUrl: "https://cloud-images.ubuntu.com/lunar/current/lunar-server-cloudimg-amd64.img"
+
+  - vmid: "9003"
+    key: debian-based
+    template_name: debian-11
+    storage_name: fast1
+    imageUrl: "https://cloud.debian.org/images/cloud/bullseye/latest/debian-11-genericcloud-amd64.qcow2"

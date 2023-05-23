@@ -14,7 +14,7 @@
     name: libguestfs-tools
   when: reg_exists.changed
 
-- name: "({{template_name}}) Download ubuntu cloud image"
+- name: "({{template_name}}) Download cloud image"
   register: reg_download
   get_url:
     url: "{{ imageUrl }}"

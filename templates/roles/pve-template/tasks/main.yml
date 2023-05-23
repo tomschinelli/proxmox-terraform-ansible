@@ -1,5 +1,5 @@
 ---
-- name: Create Ubuntu 22.04 Template
+- name: Create Template
   include_tasks: "{{ item.key }}.yml"
   vars:
     vmid: "{{ item.vmid }}"
