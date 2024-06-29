@@ -1,0 +1,13 @@
+---
+- name: "({{template_name}}) Check existence"
+  register: reg_exists
+  command: pvesh get /cluster/nextid -vmid {{ vmid }}
+  failed_when: false
+  changed_when: reg_exists.stdout != vmid
+
+- name: "({{template_name}}) Delete template"
+  shell:
+    cmd: |
+      qm destroy {{ vmid }} 
+
+  when: reg_exists.changed

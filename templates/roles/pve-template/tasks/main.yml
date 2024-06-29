@@ -1,5 +1,5 @@
 ---
-- name: Create Template
+- name: CREATE Template
   include_tasks: "{{ item.key }}.yml"
   vars:
     vmid: "{{ item.vmid }}"
@@ -7,5 +7,20 @@
     key: "{{ item.key }}"
     storage_name: "{{ item.storage_name }}"
     template_name: "{{ item.template_name }}"
-
-  with_items: "{{ templates }}"
+  with_items: >-
+            {{ (templates
+                | selectattr('delete', 'defined')
+                | selectattr('delete', 'equalto',false) )
+              +
+                (templates | selectattr('delete', 'undefined') )
+            }}
+- name: DELETE Template
+  include_tasks: "delete.yml"
+  vars:
+    template_name: "{{ item.template_name }}"
+    vmid: "{{ item.vmid }}"
+  with_items: >-
+    {{ templates
+        | selectattr('delete', 'defined')
+        | selectattr('delete', 'equalto',true) 
+    }}
